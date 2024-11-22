@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
+import { Link } from 'react-router-dom';
 const CharacterList = () => {
   const [characters, setCharacters] = useState([]);
 
@@ -29,6 +29,7 @@ const CharacterList = () => {
               <h3>{character.name}</h3>
               <p>Height: {character.height}</p>
               <p>Gender: {character.gender}</p>
+              <Link to={`/characters/${character.url.split('/')[5]}`}>View Details</Link>
             </div>
           ))}
         </div>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
+import { Link } from 'react-router-dom';
 const PlanetList = () => {
   const [planets, setPlanets] = useState([]);
 
@@ -29,6 +29,7 @@ const PlanetList = () => {
               <h3>{planet.name}</h3>
               <p>Climate: {planet.climate}</p>
               <p>Population: {planet.population}</p>
+              <Link to={`/planets/${planet.url.split('/')[5]}`}>View Details</Link>
             </div>
           ))}
         </div>
