@@ -4,25 +4,21 @@ import Home from './Home';
 import StarshipList from './StarshipList';
 import StarshipPage from './StarshipPage'; 
 
-import Films from './Films';
-import Planets from './Planets';
-import Characters from './Characters';
+import FilmList from './FilmList';
+import PlanetList from './PlanetList';
+import CharacterList from './CharacterList';
 import PlanetPage from './PlanetPage'; 
 
-function Main() {
+const Main = () => {
   return (
-    <main>
+    <div>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/starships" element={<StarshipList />} />
-        <Route path="/starships/:id" element={<StarshipPage />} /> 
-                
-        <Route path="/films" element={<Films />} />
-        <Route path="/planets" element={<Planets />} />
-        <Route path="/characters" element={<Characters />} />
+        <Route path="/films" element={<FilmList />} />
+        <Route path="/planets" element={<PlanetList />} />
+        <Route path="/people" element={<CharacterList />} />
       </Routes>
-    </main>
+    </div>
   );
-}
+};
 
 export default Main;

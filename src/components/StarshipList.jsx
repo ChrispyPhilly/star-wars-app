@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-function StarshipList() {
+const StarshipList = () => {
   const [starships, setStarships] = useState([]);
 
   useEffect(() => {
+    
     const fetchStarships = async () => {
       try {
         const response = await fetch('https://swapi.dev/api/starships/');
@@ -16,23 +17,26 @@ function StarshipList() {
     };
 
     fetchStarships();
-  }, []);
-
+  }, []); 
   return (
     <div>
-      <h2>Starships</h2>
-      <ul>
-        {starships.map((starship, index) => (
-          <li key={index}>
-            <Link to={`/starships/${index + 1}`}> 
+      <h2>Starships List</h2>
+      {starships.length === 0 ? (
+        <p>Loading starships...</p>
+      ) : (
+        <div>
+          {starships.map((starship) => (
+            <div key={starship.url}>
               <h3>{starship.name}</h3>
               <p>Model: {starship.model}</p>
-            </Link>
-          </li>
-        ))}
-      </ul>
+              <p>Manufacturer: {starship.manufacturer}</p>
+              <Link to={`/starships/${starship.url.split('/')[5]}`}>View Details</Link>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
-}
+};
 
 export default StarshipList;

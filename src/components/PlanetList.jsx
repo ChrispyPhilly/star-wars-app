@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 
-function Planets() {
+const PlanetList = () => {
   const [planets, setPlanets] = useState([]);
 
   useEffect(() => {
@@ -9,7 +8,7 @@ function Planets() {
       try {
         const response = await fetch('https://swapi.dev/api/planets/');
         const data = await response.json();
-        setPlanets(data.results); 
+        setPlanets(data.results); // Store planets in state
       } catch (error) {
         console.error('Error fetching planets:', error);
       }
@@ -20,19 +19,22 @@ function Planets() {
 
   return (
     <div>
-      <h2>Planets</h2>
-      <ul>
-        {planets.map((planet, index) => (
-          <li key={index}>
-            <Link to={`/planets/${index + 1}`}> 
+      <h2>Planets List</h2>
+      {planets.length === 0 ? (
+        <p>Loading planets...</p>
+      ) : (
+        <div>
+          {planets.map((planet) => (
+            <div key={planet.url}>
               <h3>{planet.name}</h3>
               <p>Climate: {planet.climate}</p>
-            </Link>
-          </li>
-        ))}
-      </ul>
+              <p>Population: {planet.population}</p>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
-}
+};
 
-export default Planets;
+export default PlanetList;
